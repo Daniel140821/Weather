@@ -6,8 +6,8 @@
 //
 //Height List
 //大：280
-//中：210
-//小：210
+//中：220
+//小：220
 import SwiftUI
 
 struct ContentView: View {
@@ -145,7 +145,7 @@ struct ContentView: View {
                             }
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
-                            .frame(height: 210)
+                            .frame(height: 220)
                             .padding(.horizontal)
                             .background(Color( 7...17 ~= hour ? Color.black : Color.white).opacity(0.1))
                             .cornerRadius(20)
@@ -172,7 +172,7 @@ struct ContentView: View {
                                     Spacer()
                                 }
                                 .frame(maxWidth: .infinity)
-                                .frame(height: 210)
+                                .frame(height: 220)
                                 .background(Color( 7...17 ~= hour ? Color.black : Color.white).opacity(0.1))
                                 .cornerRadius(20)
                                 
@@ -236,7 +236,7 @@ struct ContentView: View {
                                 }
                                 .foregroundColor(.white)
                                 .frame(maxWidth: .infinity)
-                                .frame(height: 210)
+                                .frame(height: 220)
                                 .background(Color( 7...17 ~= hour ? Color.black : Color.white).opacity(0.1))
                                 .cornerRadius(20)
                             }
@@ -294,7 +294,7 @@ struct ContentView: View {
                             }
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
-                            .frame(height: 210)
+                            .frame(height: 220)
                             .background(Color( 7...17 ~= hour ? Color.black : Color.white).opacity(0.1))
                             .cornerRadius(20)
                             .padding(.vertical)
