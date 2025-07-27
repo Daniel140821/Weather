@@ -143,64 +143,143 @@ struct ContentView: View {
                             .padding(.horizontal)
                             .background(Color( 7...17 ~= hour ? Color.black : Color.white).opacity(0.1))
                             .cornerRadius(20)
-                            .padding(.top)
+                            .padding(.vertical)
                             
+                            
+                            VStack{
+                                Spacer()
+                                HStack{
+                                    Label {
+                                        Text("風")
+                                            .bold()
+                                    } icon: {
+                                        Image(systemName: "wind")
+                                    }
+
+                                }
+                                HStack{
+                                    Text("風速")
+                                        .font(.title3)
+                                        .bold()
+                                    
+                                    Spacer()
+                                    
+                                    Text(windSpeed != nil ? "\(windSpeed!.formatted())米/秒" : "--")
+                                        .font(.title)
+                                        .frame(height: 45)
+                                }
+                                
+                                HStack{
+                                    Text("風向")
+                                        .font(.title3)
+                                        .bold()
+                                    
+                                    Spacer()
+                                    
+                                    Text(windDeg != nil ? "\(DegreeAndDirection.findDirection(for: windDeg!)) \(windDeg!)°" : "--")
+                                        .font(.title)
+                                        .frame(height: 45)
+                                }
+                                
+                                HStack{
+                                    Text("陣風速度")
+                                        .font(.title3)
+                                        .bold()
+                                    
+                                    Spacer()
+                                    
+                                    Text(windGust != nil ? "\(windGust!.formatted())米/秒" : "--")
+                                        .font(.title)
+                                        .frame(height: 45)
+                                }
+                                Spacer()
+                            }
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 200)
+                            .padding(.horizontal)
+                            .background(Color( 7...17 ~= hour ? Color.black : Color.white).opacity(0.1))
+                            .cornerRadius(20)
+                            .padding(.vertical)
                             
                             VStack{
                                 Group{
                                     Spacer()
                                     
-                                    Text("航海氣象")
-                                        .bold()
                                     
-                                    Text("能見度")
-                                        .font(.title3)
-                                        .bold()
+                                    Label {
+                                        Text("航海氣象")
+                                            .bold()
+                                    } icon: {
+                                        Image(systemName: "sailboat")
+                                    }
                                     
-                                    if visibility ?? 0 < 1000{
-                                        Text(visibility != nil ? "\(visibility!.formatted())米" : "--")
-                                            .font(.title)
-                                            .frame(height: 45)
-                                    }else{
-                                        Text(visibility_km != nil ? "\(visibility_km!.formatted())公里" : "--")
+                                    HStack{
+                                        Text("能見度")
+                                            .font(.title3)
+                                            .bold()
+                                        
+                                        Spacer()
+                                        
+                                        if visibility ?? 0 < 1000{
+                                            Text(visibility != nil ? "\(visibility!.formatted())米" : "--")
+                                                .font(.title)
+                                                .frame(height: 45)
+                                        }else{
+                                            Text(visibility_km != nil ? "\(visibility_km!.formatted())公里" : "--")
+                                                .font(.title)
+                                                .frame(height: 45)
+                                        }
+                                    }
+                                    
+                                    
+                                    
+                                    HStack{
+                                        Text("風速")
+                                            .font(.title3)
+                                            .bold()
+                                        
+                                        Spacer()
+                                        
+                                        Text(windSpeed != nil ? "\(windSpeed!.formatted())米/秒" : "--")
                                             .font(.title)
                                             .frame(height: 45)
                                     }
                                     
-                                    Text("風速")
-                                        .font(.title3)
-                                        .bold()
+                                    HStack{
+                                        Text("風向")
+                                            .font(.title3)
+                                            .bold()
+                                        
+                                        Spacer()
+                                        
+                                        Text(windDeg != nil ? "\(DegreeAndDirection.findDirection(for: windDeg!)) \(windDeg!)°" : "--")
+                                            .font(.title)
+                                            .frame(height: 45)
+                                    }
                                     
-                                    Text(windSpeed != nil ? "\(windSpeed!.formatted())米/秒" : "--")
-                                        .font(.title)
-                                        .frame(height: 45)
-                                    
-                                    Text("風向")
-                                        .font(.title3)
-                                        .bold()
-                                    
-                                    Text(windDeg != nil ? "\(DegreeAndDirection.findDirection(for: windDeg!))" : "--")
-                                        .font(.title)
-                                        .frame(height: 45)
-                                    
-                                    Text("陣風速度")
-                                        .font(.title3)
-                                        .bold()
-
-                                    Text(windGust != nil ? "\(windGust!.formatted())米/秒" : "--")
-                                        .font(.title)
-                                        .frame(height: 45)
-                                    
+                                    HStack{
+                                        Text("陣風速度")
+                                            .font(.title3)
+                                            .bold()
+                                        
+                                        Spacer()
+                                        
+                                        Text(windGust != nil ? "\(windGust!.formatted())米/秒" : "--")
+                                            .font(.title)
+                                            .frame(height: 45)
+                                    }
                                     Spacer()
                                     
                                 }.padding(.top)
                             }
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
-                            .frame(height: 510)
+                            .frame(height: 360)
                             .padding(.horizontal)
                             .background(Color( 7...17 ~= hour ? Color.black : Color.white).opacity(0.1))
                             .cornerRadius(20)
+                            .padding(.vertical)
                             
                         }.padding(.horizontal)
                         
