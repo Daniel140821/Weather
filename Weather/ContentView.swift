@@ -4,7 +4,10 @@
 //
 //  Created by Daniel on 26/7/2025.
 //
-
+//Height List
+//大：250
+//中：200
+//小：200
 import SwiftUI
 
 struct ContentView: View {
@@ -36,6 +39,9 @@ struct ContentView: View {
     @State private var windSpeed : Double?
     @State private var windDeg : Int?
     @State private var windGust : Double?
+    @State private var pressure : Int?
+    @State private var seaLevel : Int?
+    @State private var grndLevel : Int?
     
     @State private var cityName : String?
     
@@ -145,6 +151,96 @@ struct ContentView: View {
                             .cornerRadius(20)
                             .padding(.vertical)
                             
+                            HStack{
+                                VStack{
+                                    
+                                    HStack{
+                                        Label {
+                                            Text("濕度")
+                                        } icon: {
+                                            Image(systemName: "humidity.fill")
+                                        }.padding()
+                                        
+                                        Spacer()
+                                    }
+                                    
+                                    Spacer()
+
+                                    humidityGauge
+                                        .scaleEffect(2.0)
+                                    
+                                    Spacer()
+                                }
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 200)
+                                .background(Color( 7...17 ~= hour ? Color.black : Color.white).opacity(0.1))
+                                .cornerRadius(20)
+                                
+                                VStack{
+                                    HStack{
+                                        Label {
+                                            Text("氣壓")
+                                        } icon: {
+                                            Image(systemName: "gauge.with.dots.needle.bottom.50percent")
+                                        }
+                                        .padding(.horizontal)
+                                        .padding(.top)
+                                        
+                                        Spacer()
+                                    }
+                                    
+                                    VStack{
+                                        HStack{
+                                            Text("氣壓")
+                                                .bold()
+                                                .font(.title2)
+                                                .padding(.horizontal)
+                                            Spacer()
+                                        }
+                                        HStack{
+                                            Text(pressure != nil ? String(pressure!)+"百帕" : "--")
+                                                .padding(.horizontal)
+                                            Spacer()
+                                        }.padding(.horizontal)
+                                    }
+                                    
+                                    VStack{
+                                        HStack{
+                                            Text("海平面氣壓")
+                                                .bold()
+                                                .font(.title2)
+                                                .padding(.horizontal)
+                                            Spacer()
+                                        }
+                                        HStack{
+                                            Text(seaLevel != nil ? String(seaLevel!)+"百帕" : "--")
+                                                .padding(.horizontal)
+                                            Spacer()
+                                        }.padding(.horizontal)
+                                    }
+                                    
+                                    Spacer()
+                                    HStack{
+                                        Text("地面氣壓")
+                                            .bold()
+                                            .font(.title2)
+                                            .padding(.horizontal)
+                                        Spacer()
+                                    }
+                                    HStack{
+                                        Text(grndLevel != nil ? String(grndLevel!)+"百帕" : "--")
+                                            .padding(.horizontal)
+                                        Spacer()
+                                    }.padding(.horizontal)
+                                    Spacer()
+                                }
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 200)
+                                .background(Color( 7...17 ~= hour ? Color.black : Color.white).opacity(0.1))
+                                .cornerRadius(20)
+                            }
+                            
                             
                             VStack{
                                 Spacer()
@@ -154,86 +250,11 @@ struct ContentView: View {
                                             .bold()
                                     } icon: {
                                         Image(systemName: "wind")
-                                    }
-
-                                }
-                                HStack{
-                                    Text("風速")
-                                        .font(.title3)
-                                        .bold()
+                                    }.padding()
                                     
                                     Spacer()
-                                    
-                                    Text(windSpeed != nil ? "\(windSpeed!.formatted())米/秒" : "--")
-                                        .font(.title)
-                                        .frame(height: 45)
                                 }
-                                
-                                HStack{
-                                    Text("風向")
-                                        .font(.title3)
-                                        .bold()
-                                    
-                                    Spacer()
-                                    
-                                    Text(windDeg != nil ? "\(DegreeAndDirection.findDirection(for: windDeg!)) \(windDeg!)°" : "--")
-                                        .font(.title)
-                                        .frame(height: 45)
-                                }
-                                
-                                HStack{
-                                    Text("陣風速度")
-                                        .font(.title3)
-                                        .bold()
-                                    
-                                    Spacer()
-                                    
-                                    Text(windGust != nil ? "\(windGust!.formatted())米/秒" : "--")
-                                        .font(.title)
-                                        .frame(height: 45)
-                                }
-                                Spacer()
-                            }
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 200)
-                            .padding(.horizontal)
-                            .background(Color( 7...17 ~= hour ? Color.black : Color.white).opacity(0.1))
-                            .cornerRadius(20)
-                            .padding(.vertical)
-                            
-                            VStack{
-                                Group{
-                                    Spacer()
-                                    
-                                    
-                                    Label {
-                                        Text("航海氣象")
-                                            .bold()
-                                    } icon: {
-                                        Image(systemName: "sailboat")
-                                    }
-                                    
-                                    HStack{
-                                        Text("能見度")
-                                            .font(.title3)
-                                            .bold()
-                                        
-                                        Spacer()
-                                        
-                                        if visibility ?? 0 < 1000{
-                                            Text(visibility != nil ? "\(visibility!.formatted())米" : "--")
-                                                .font(.title)
-                                                .frame(height: 45)
-                                        }else{
-                                            Text(visibility_km != nil ? "\(visibility_km!.formatted())公里" : "--")
-                                                .font(.title)
-                                                .frame(height: 45)
-                                        }
-                                    }
-                                    
-                                    
-                                    
+                                VStack{
                                     HStack{
                                         Text("風速")
                                             .font(.title3)
@@ -245,7 +266,6 @@ struct ContentView: View {
                                             .font(.title)
                                             .frame(height: 45)
                                     }
-                                    
                                     HStack{
                                         Text("風向")
                                             .font(.title3)
@@ -270,16 +290,96 @@ struct ContentView: View {
                                             .frame(height: 45)
                                     }
                                     Spacer()
-                                    
-                                }.padding(.top)
+                                }.padding(.horizontal)
                             }
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
-                            .frame(height: 360)
-                            .padding(.horizontal)
+                            .frame(height: 200)
                             .background(Color( 7...17 ~= hour ? Color.black : Color.white).opacity(0.1))
                             .cornerRadius(20)
                             .padding(.vertical)
+                            
+                            VStack{
+                                Group{
+                                    Spacer()
+                                    
+                                    HStack{
+                                        Label {
+                                            Text("航海氣象")
+                                                .bold()
+                                        } icon: {
+                                            Image(systemName: "sailboat")
+                                        }
+                                        Spacer()
+                                    }.padding()
+                                    
+                                    VStack{
+                                        HStack{
+                                            Text("能見度")
+                                                .font(.title3)
+                                                .bold()
+                                            
+                                            Spacer()
+                                            
+                                            if visibility ?? 0 < 1000{
+                                                Text(visibility != nil ? "\(visibility!.formatted())米" : "--")
+                                                    .font(.title)
+                                                    .frame(height: 45)
+                                            }else{
+                                                Text(visibility_km != nil ? "\(visibility_km!.formatted())公里" : "--")
+                                                    .font(.title)
+                                                    .frame(height: 45)
+                                            }
+                                        }
+                                        
+                                        HStack{
+                                            Text("風速")
+                                                .font(.title3)
+                                                .bold()
+                                            
+                                            Spacer()
+                                            
+                                            Text(windSpeed != nil ? "\(windSpeed!.formatted())米/秒" : "--")
+                                                .font(.title)
+                                                .frame(height: 45)
+                                        }
+                                        
+                                        HStack{
+                                            Text("風向")
+                                                .font(.title3)
+                                                .bold()
+                                            
+                                            Spacer()
+                                            
+                                            Text(windDeg != nil ? "\(DegreeAndDirection.findDirection(for: windDeg!)) \(windDeg!)°" : "--")
+                                                .font(.title)
+                                                .frame(height: 45)
+                                        }
+                                        
+                                        HStack{
+                                            Text("陣風速度")
+                                                .font(.title3)
+                                                .bold()
+                                            
+                                            Spacer()
+                                            
+                                            Text(windGust != nil ? "\(windGust!.formatted())米/秒" : "--")
+                                                .font(.title)
+                                                .frame(height: 45)
+                                        }
+                                    }.padding(.horizontal)
+                                    
+                                    Spacer()
+                                    
+                                }
+                            }
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 250)
+                            //.padding(.horizontal)
+                            .background(Color( 7...17 ~= hour ? Color.black : Color.white).opacity(0.1))
+                            .cornerRadius(20)
+                            //.padding(.vertical)
                             
                         }.padding(.horizontal)
                         
@@ -310,6 +410,9 @@ struct ContentView: View {
                                     windSpeed = Welcome.wind.speed
                                     windDeg = Welcome.wind.deg
                                     windGust = Welcome.wind.gust
+                                    seaLevel = Welcome.main.seaLevel
+                                    grndLevel = Welcome.main.grndLevel
+                                    pressure = Welcome.main.pressure
                                 } catch {
                                     // 处理解码错误
                                     print("解码失败: \(error.localizedDescription)")
@@ -360,6 +463,9 @@ struct ContentView: View {
                                         windSpeed = Welcome.wind.speed
                                         windDeg = Welcome.wind.deg
                                         windGust = Welcome.wind.gust
+                                        seaLevel = Welcome.main.seaLevel
+                                        grndLevel = Welcome.main.grndLevel
+                                        pressure = Welcome.main.pressure
                                     } catch {
                                         // 处理解码错误
                                         print("解码失败: \(error.localizedDescription)")
@@ -482,7 +588,9 @@ struct ContentView: View {
                         windSpeed = Welcome.wind.speed
                         windDeg = Welcome.wind.deg
                         windGust = Welcome.wind.gust
-                        
+                        seaLevel = Welcome.main.seaLevel
+                        grndLevel = Welcome.main.grndLevel
+                        pressure = Welcome.main.pressure
                     } catch {
                         // 处理解码错误
                         print("解码失败: \(error.localizedDescription)")
@@ -530,6 +638,9 @@ struct ContentView: View {
                         windSpeed = Welcome.wind.speed
                         windDeg = Welcome.wind.deg
                         windGust = Welcome.wind.gust
+                        seaLevel = Welcome.main.seaLevel
+                        grndLevel = Welcome.main.grndLevel
+                        pressure = Welcome.main.pressure
                     } catch {
                         // 处理解码错误
                         print("解码失败: \(error.localizedDescription)")
@@ -557,6 +668,23 @@ struct ContentView: View {
         .onAppear{
             locationManager.requestPermission()
         }
+    }
+    var humidityGauge: some View{
+        Gauge(value: Double(humidity ?? 0), in: 0...100) {
+            Text("濕度")
+                .foregroundStyle(.white)
+        } currentValueLabel: {
+            Text(" \(humidity ?? 0)%")
+                .foregroundStyle(.white)
+        } minimumValueLabel: {
+            Text("\(0)")
+                .foregroundStyle(.white)
+        } maximumValueLabel: {
+            Text("\(100)")
+                .foregroundStyle(.white)
+        }
+        .tint(.white)
+        .gaugeStyle(.accessoryCircular)
     }
 }
 
