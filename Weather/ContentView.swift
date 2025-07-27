@@ -33,6 +33,9 @@ struct ContentView: View {
     @State private var humidity : Int?
     @State private var visibility : Double?
     @State private var visibility_km : Double?
+    @State private var windSpeed : Double?
+    @State private var windDeg : Int?
+    @State private var windGust : Double?
     
     @State private var cityName : String?
     
@@ -144,9 +147,9 @@ struct ContentView: View {
                             
                             
                             VStack{
-                                Spacer()
-                                
                                 Group{
+                                    Spacer()
+                                    
                                     Text("航海氣象")
                                         .bold()
                                     
@@ -159,25 +162,45 @@ struct ContentView: View {
                                             .font(.title)
                                             .frame(height: 45)
                                     }else{
-                                        Text(visibility != nil ? "\(visibility_km!.formatted())公里" : "--")
+                                        Text(visibility_km != nil ? "\(visibility_km!.formatted())公里" : "--")
                                             .font(.title)
                                             .frame(height: 45)
                                     }
                                     
-                                    Text("現時")
+                                    Text("風速")
+                                        .font(.title3)
                                         .bold()
+                                    
+                                    Text(windSpeed != nil ? "\(windSpeed!.formatted())米/秒" : "--")
+                                        .font(.title)
+                                        .frame(height: 45)
+                                    
+                                    Text("風向")
+                                        .font(.title3)
+                                        .bold()
+                                    
+                                    Text(windDeg != nil ? "\(DegreeAndDirection.findDirection(for: windDeg!))" : "--")
+                                        .font(.title)
+                                        .frame(height: 45)
+                                    
+                                    Text("陣風速度")
+                                        .font(.title3)
+                                        .bold()
+
+                                    Text(windGust != nil ? "\(windGust!.formatted())米/秒" : "--")
+                                        .font(.title)
+                                        .frame(height: 45)
+                                    
+                                    Spacer()
+                                    
                                 }.padding(.top)
-                                
-                                
-                                Spacer()
                             }
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
-                            .frame(height: 220)
+                            .frame(height: 510)
                             .padding(.horizontal)
                             .background(Color( 7...17 ~= hour ? Color.black : Color.white).opacity(0.1))
                             .cornerRadius(20)
-                            .padding(.top)
                             
                         }.padding(.horizontal)
                         
@@ -205,6 +228,9 @@ struct ContentView: View {
                                     humidity = Welcome.main.humidity
                                     visibility = Welcome.visibility
                                     visibility_km = Welcome.visibility * 0.001
+                                    windSpeed = Welcome.wind.speed
+                                    windDeg = Welcome.wind.deg
+                                    windGust = Welcome.wind.gust
                                 } catch {
                                     // 处理解码错误
                                     print("解码失败: \(error.localizedDescription)")
@@ -252,6 +278,9 @@ struct ContentView: View {
                                         humidity = Welcome.main.humidity
                                         visibility = Welcome.visibility
                                         visibility_km = Welcome.visibility * 0.001
+                                        windSpeed = Welcome.wind.speed
+                                        windDeg = Welcome.wind.deg
+                                        windGust = Welcome.wind.gust
                                     } catch {
                                         // 处理解码错误
                                         print("解码失败: \(error.localizedDescription)")
@@ -371,6 +400,9 @@ struct ContentView: View {
                         humidity = Welcome.main.humidity
                         visibility = Welcome.visibility
                         visibility_km = Welcome.visibility * 0.001
+                        windSpeed = Welcome.wind.speed
+                        windDeg = Welcome.wind.deg
+                        windGust = Welcome.wind.gust
                         
                     } catch {
                         // 处理解码错误
@@ -416,6 +448,9 @@ struct ContentView: View {
                         humidity = Welcome.main.humidity
                         visibility = Welcome.visibility
                         visibility_km = Welcome.visibility * 0.001
+                        windSpeed = Welcome.wind.speed
+                        windDeg = Welcome.wind.deg
+                        windGust = Welcome.wind.gust
                     } catch {
                         // 处理解码错误
                         print("解码失败: \(error.localizedDescription)")
