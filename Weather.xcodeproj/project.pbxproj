@@ -200,11 +200,11 @@
 				};
 			};
 			buildConfigurationList = 650AAEE52E34922D00A1F277 /* Build configuration list for PBXProject "Weather" */;
-			developmentRegion = en;
+			developmentRegion = "zh-Hant";
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				"zh-Hant",
 			);
 			mainGroup = 650AAEE12E34922D00A1F277;
 			minimizedProjectReferenceProxies = 1;
