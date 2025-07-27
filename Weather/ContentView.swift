@@ -5,7 +5,7 @@
 //  Created by Daniel on 26/7/2025.
 //
 //Height List
-//大：280
+//大：300
 //中：220
 //小：220
 import SwiftUI
@@ -375,7 +375,7 @@ struct ContentView: View {
                             }
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
-                            .frame(height: 280)
+                            .frame(height: 300)
                             //.padding(.horizontal)
                             .background(Color( 7...17 ~= hour ? Color.black : Color.white).opacity(0.1))
                             .cornerRadius(20)
