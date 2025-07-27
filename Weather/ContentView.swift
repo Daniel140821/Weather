@@ -5,9 +5,9 @@
 //  Created by Daniel on 26/7/2025.
 //
 //Height List
-//大：250
-//中：200
-//小：200
+//大：280
+//中：210
+//小：210
 import SwiftUI
 
 struct ContentView: View {
@@ -145,7 +145,7 @@ struct ContentView: View {
                             }
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
-                            .frame(height: 250)
+                            .frame(height: 210)
                             .padding(.horizontal)
                             .background(Color( 7...17 ~= hour ? Color.black : Color.white).opacity(0.1))
                             .cornerRadius(20)
@@ -172,7 +172,7 @@ struct ContentView: View {
                                     Spacer()
                                 }
                                 .frame(maxWidth: .infinity)
-                                .frame(height: 200)
+                                .frame(height: 210)
                                 .background(Color( 7...17 ~= hour ? Color.black : Color.white).opacity(0.1))
                                 .cornerRadius(20)
                                 
@@ -236,7 +236,7 @@ struct ContentView: View {
                                 }
                                 .foregroundColor(.white)
                                 .frame(maxWidth: .infinity)
-                                .frame(height: 200)
+                                .frame(height: 210)
                                 .background(Color( 7...17 ~= hour ? Color.black : Color.white).opacity(0.1))
                                 .cornerRadius(20)
                             }
@@ -294,7 +294,7 @@ struct ContentView: View {
                             }
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
-                            .frame(height: 200)
+                            .frame(height: 210)
                             .background(Color( 7...17 ~= hour ? Color.black : Color.white).opacity(0.1))
                             .cornerRadius(20)
                             .padding(.vertical)
@@ -375,7 +375,7 @@ struct ContentView: View {
                             }
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
-                            .frame(height: 250)
+                            .frame(height: 280)
                             //.padding(.horizontal)
                             .background(Color( 7...17 ~= hour ? Color.black : Color.white).opacity(0.1))
                             .cornerRadius(20)
