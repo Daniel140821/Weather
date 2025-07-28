@@ -159,7 +159,9 @@ struct ContentView: View {
                                             Text("濕度")
                                         } icon: {
                                             Image(systemName: "humidity.fill")
-                                        }.padding()
+                                        }
+                                        .foregroundColor(.white)
+                                        .padding()
                                         
                                         Spacer()
                                     }
@@ -300,86 +302,87 @@ struct ContentView: View {
                             .padding(.vertical)
                             
                             VStack{
-                                Group{
-                                    Spacer()
-                                    
-                                    HStack{
-                                        Label {
-                                            Text("航海氣象")
-                                                .bold()
-                                        } icon: {
-                                            Image(systemName: "sailboat")
-                                        }
-                                        Spacer()
+                                HStack{
+                                    Label {
+                                        Text("航海氣象")
+                                    } icon: {
+                                        Image(systemName: "sailboat")
                                     }.padding()
                                     
-                                    VStack{
-                                        HStack{
-                                            Text("能見度")
-                                                .font(.title3)
-                                                .bold()
-                                            
-                                            Spacer()
-                                            
-                                            if visibility ?? 0 < 1000{
-                                                Text(visibility != nil ? "\(visibility!.formatted())米" : "--")
-                                                    .font(.title)
-                                                    .frame(height: 45)
-                                            }else{
-                                                Text(visibility_km != nil ? "\(visibility_km!.formatted())公里" : "--")
-                                                    .font(.title)
-                                                    .frame(height: 45)
-                                            }
-                                        }
-                                        
-                                        HStack{
-                                            Text("風速")
-                                                .font(.title3)
-                                                .bold()
-                                            
-                                            Spacer()
-                                            
-                                            Text(windSpeed != nil ? "\(windSpeed!.formatted())米/秒" : "--")
-                                                .font(.title)
-                                                .frame(height: 45)
-                                        }
-                                        
-                                        HStack{
-                                            Text("風向")
-                                                .font(.title3)
-                                                .bold()
-                                            
-                                            Spacer()
-                                            
-                                            Text(windDeg != nil ? "\(DegreeAndDirection.findDirection(for: windDeg!)) \(windDeg!)°" : "--")
-                                                .font(.title)
-                                                .frame(height: 45)
-                                        }
-                                        
-                                        HStack{
-                                            Text("陣風速度")
-                                                .font(.title3)
-                                                .bold()
-                                            
-                                            Spacer()
-                                            
-                                            Text(windGust != nil ? "\(windGust!.formatted())米/秒" : "--")
-                                                .font(.title)
-                                                .frame(height: 45)
-                                        }
-                                    }.padding(.horizontal)
-                                    
                                     Spacer()
-                                    
+
                                 }
+                                
+                                Spacer()
+                                
+                                Group{
+                                    HStack{
+                                        Text("能見度")
+                                            .font(.title3)
+                                            .bold()
+                                        
+                                        Spacer()
+                                        
+                                        if visibility ?? 0 < 1000{
+                                            Text(visibility != nil ? "\(visibility!.formatted())米" : "--")
+                                                .font(.title)
+                                                .frame(height: 45)
+                                        }else{
+                                            Text(visibility_km != nil ? "\(visibility_km!.formatted())公里" : "--")
+                                                .font(.title)
+                                                .frame(height: 45)
+                                        }
+                                    }
+                                    
+                                    HStack{
+                                        Text("風速")
+                                            .font(.title3)
+                                            .bold()
+                                                                                
+                                        Spacer()
+                                                                                    
+                                        Text(windSpeed != nil ? "\(windSpeed!.formatted())米/秒" : "--")
+                                            .font(.title)
+                                            .frame(height: 45)
+                                    }
+                                    
+                                    HStack{
+                                        Text("風向")
+                                            .font(.title3)
+                                            .bold()
+                                                                                
+                                        Spacer()
+                                                                                
+                                    Text(windDeg != nil ? "\(DegreeAndDirection.findDirection(for: windDeg!)) \(windDeg!)°" : "--")
+                                        .font(.title)
+                                        .frame(height: 45)
+                                        
+                                    }
+                                    
+                                    
+                                    HStack{
+                                        Text("陣風速度")
+                                            .font(.title3)
+                                            .bold()
+                                                                                
+                                        Spacer()
+                                                                                
+                                        Text(windGust != nil ? "\(windGust!.formatted())米/秒" : "--")
+                                            .font(.title)
+                                            .frame(height: 45)
+                                    }
+                                    
+                                }.padding(.horizontal)
+                                
+                                Spacer()
+                                    
                             }
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .frame(height: 300)
-                            //.padding(.horizontal)
                             .background(Color( 7...17 ~= hour ? Color.black : Color.white).opacity(0.1))
                             .cornerRadius(20)
-                            //.padding(.vertical)
+                            .padding(.vertical)
                             
                         }.padding(.horizontal)
                         
@@ -491,7 +494,7 @@ struct ContentView: View {
                         UpdateWeatherTimer?.invalidate()
                     }
                     
-                } else if let error = locationManager.errorMessage , error != "失敗: 請到設定同意獲取位置" , error != "獲取位置失敗: The operation couldn’t be completed. (kCLErrorDomain error 1.)" {
+                } else if let error = locationManager.errorMessage , error != "失敗: 請到設定同意獲取位置" , error.contains("kCLErrorDomain error 1.") {
                     Spacer()
                     
                     Image(systemName: "location.slash.fill")
@@ -539,7 +542,9 @@ struct ContentView: View {
                             Text("立即前往本應用的設置")
                         } icon: {
                             Image(systemName: "gear")
-                        }.font(.title2)
+                        }
+                        .font(.title2)
+                        .foregroundColor(.white)
                     }
                     .buttonStyle(.borderedProminent)
                     .buttonBorderShape(.capsule)
