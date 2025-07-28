@@ -8,6 +8,8 @@
 //大：300
 //中：220
 //小：220
+//0.7.3
+
 import SwiftUI
 
 struct ContentView: View {
