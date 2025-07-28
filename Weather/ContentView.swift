@@ -8,7 +8,7 @@
 //大：300
 //中：220
 //小：220
-//0.7.3
+//0.7.4
 
 import SwiftUI
 
@@ -192,6 +192,7 @@ struct ContentView: View {
                                         
                                         Spacer()
                                     }
+                                    Spacer()
                                     
                                     VStack{
                                         HStack{
@@ -223,7 +224,6 @@ struct ContentView: View {
                                         }.padding(.horizontal)
                                     }
                                     
-                                    Spacer()
                                     HStack{
                                         Text("地面氣壓")
                                             .bold()
